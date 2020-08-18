@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        #map {
+            width: 1502px;
+            height: 852px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/PERIMETREVILLE_0.js"></script>
+        <script src="data/LIMITESQUARTIERS2020_1.js"></script>
+        <script src="data/PARCELLES_2.js"></script>
+        <script src="data/BATIMENTS_3.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[45.1549163237831,5.715544157242687],[45.19957861268921,5.822569255382437]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_PERIMETREVILLE_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ogc_fid'] !== null ? autolinker.link(feature.properties['ogc_fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nom'] !== null ? autolinker.link(feature.properties['nom'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PERIMETREVILLE_0_0() {
+            return {
+                pane: 'pane_PERIMETREVILLE_0',
+                opacity: 1,
+                color: 'rgba(31,120,180,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 7.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PERIMETREVILLE_0');
+        map.getPane('pane_PERIMETREVILLE_0').style.zIndex = 400;
+        map.getPane('pane_PERIMETREVILLE_0').style['mix-blend-mode'] = 'normal';
+        var layer_PERIMETREVILLE_0 = new L.geoJson(json_PERIMETREVILLE_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PERIMETREVILLE_0',
+            layerName: 'layer_PERIMETREVILLE_0',
+            pane: 'pane_PERIMETREVILLE_0',
+            onEachFeature: pop_PERIMETREVILLE_0,
+            style: style_PERIMETREVILLE_0_0,
+        });
+        bounds_group.addLayer(layer_PERIMETREVILLE_0);
+        map.addLayer(layer_PERIMETREVILLE_0);
+        function pop_LIMITESQUARTIERS2020_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ogc_fid'] !== null ? autolinker.link(feature.properties['ogc_fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NOM'] !== null ? autolinker.link(feature.properties['NOM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_LIMITESQUARTIERS2020_1_0(feature) {
+            switch(String(feature.properties['NOM'])) {
+                case 'BIDAL-PERI':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(145,237,45,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'CROIX ROUGE':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,88,66,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'DOMAINE UNIVERSITAIRE':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,43,81,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'LA GALOCHERE':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(56,231,17,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'LA PLAINE RENAUDIE':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(226,200,93,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'LE MURIER':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(222,103,206,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'LE VILLAGE':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,236,133,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'PORTAIL ROUGE-SEMARD':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(29,198,224,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'TEYSSERE':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(36,76,237,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'ZA BRUN':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(115,39,203,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'ZA CHAMP ROMAN':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(36,131,213,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'ZA CROIX ROUGE':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,62,145,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'ZA DES GLAIRONS':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(197,120,216,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'ZA DU BOURGAMON':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(35,208,174,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'ZA PORTE DU GRESIVAUDAN':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(50,26,205,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'ZA PRE RUFFIER':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(208,229,85,0.844)',
+                interactive: true,
+            }
+                    break;
+                case 'ZA SUD':
+                    return {
+                pane: 'pane_LIMITESQUARTIERS2020_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.844)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(204,137,78,0.844)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_LIMITESQUARTIERS2020_1');
+        map.getPane('pane_LIMITESQUARTIERS2020_1').style.zIndex = 401;
+        map.getPane('pane_LIMITESQUARTIERS2020_1').style['mix-blend-mode'] = 'normal';
+        var layer_LIMITESQUARTIERS2020_1 = new L.geoJson(json_LIMITESQUARTIERS2020_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LIMITESQUARTIERS2020_1',
+            layerName: 'layer_LIMITESQUARTIERS2020_1',
+            pane: 'pane_LIMITESQUARTIERS2020_1',
+            onEachFeature: pop_LIMITESQUARTIERS2020_1,
+            style: style_LIMITESQUARTIERS2020_1_0,
+        });
+        bounds_group.addLayer(layer_LIMITESQUARTIERS2020_1);
+        map.addLayer(layer_LIMITESQUARTIERS2020_1);
+        function pop_PARCELLES_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nomcommune'] !== null ? autolinker.link(feature.properties['nomcommune'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['surface_ge'] !== null ? autolinker.link(feature.properties['surface_ge'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['adresse'] !== null ? autolinker.link(feature.properties['adresse'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['urbain'] !== null ? autolinker.link(feature.properties['urbain'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['proprietai'] !== null ? autolinker.link(feature.properties['proprietai'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['annee'] !== null ? autolinker.link(feature.properties['annee'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Classe'] !== null ? autolinker.link(feature.properties['Classe'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Valeur'] !== null ? autolinker.link(feature.properties['Valeur'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Nature'] !== null ? autolinker.link(feature.properties['Nature'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['clefSig'] !== null ? autolinker.link(feature.properties['clefSig'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PARCELLES_2_0() {
+            return {
+                pane: 'pane_PARCELLES_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(180,168,167,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_PARCELLES_2');
+        map.getPane('pane_PARCELLES_2').style.zIndex = 402;
+        map.getPane('pane_PARCELLES_2').style['mix-blend-mode'] = 'normal';
+        var layer_PARCELLES_2 = new L.geoJson(json_PARCELLES_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PARCELLES_2',
+            layerName: 'layer_PARCELLES_2',
+            pane: 'pane_PARCELLES_2',
+            onEachFeature: pop_PARCELLES_2,
+            style: style_PARCELLES_2_0,
+        });
+        bounds_group.addLayer(layer_PARCELLES_2);
+        map.addLayer(layer_PARCELLES_2);
+        function pop_BATIMENTS_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ogc_fid'] !== null ? autolinker.link(feature.properties['ogc_fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['parcelle'] !== null ? autolinker.link(feature.properties['parcelle'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['proprietai'] !== null ? autolinker.link(feature.properties['proprietai'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['adresse'] !== null ? autolinker.link(feature.properties['adresse'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['urbain'] !== null ? autolinker.link(feature.properties['urbain'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['annee'] !== null ? autolinker.link(feature.properties['annee'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BATIMENTS_3_0() {
+            return {
+                pane: 'pane_BATIMENTS_3',
+                interactive: true,
+            }
+        }
+        function style_BATIMENTS_3_1() {
+            return {
+                pane: 'pane_BATIMENTS_3',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_BATIMENTS_3');
+        map.getPane('pane_BATIMENTS_3').style.zIndex = 403;
+        map.getPane('pane_BATIMENTS_3').style['mix-blend-mode'] = 'normal';
+        var layer_BATIMENTS_3 = new L.geoJson.multiStyle(json_BATIMENTS_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_BATIMENTS_3',
+            layerName: 'layer_BATIMENTS_3',
+            pane: 'pane_BATIMENTS_3',
+            onEachFeature: pop_BATIMENTS_3,
+            styles: [style_BATIMENTS_3_0,style_BATIMENTS_3_1,]
+        });
+        bounds_group.addLayer(layer_BATIMENTS_3);
+        map.addLayer(layer_BATIMENTS_3);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/BATIMENTS_3.png" /> BATIMENTS': layer_BATIMENTS_3,'<img src="legend/PARCELLES_2.png" /> PARCELLES': layer_PARCELLES_2,'LIMITES QUARTIERS 2020<br /><table><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_BIDALPERI0.png" /></td><td>BIDAL-PERI</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_CROIXROUGE1.png" /></td><td>CROIX ROUGE</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_DOMAINEUNIVERSITAIRE2.png" /></td><td>DOMAINE UNIVERSITAIRE</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_LAGALOCHERE3.png" /></td><td>LA GALOCHERE</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_LAPLAINERENAUDIE4.png" /></td><td>LA PLAINE RENAUDIE</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_LEMURIER5.png" /></td><td>LE MURIER</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_LEVILLAGE6.png" /></td><td>LE VILLAGE</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_PORTAILROUGESEMARD7.png" /></td><td>PORTAIL ROUGE-SEMARD</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_TEYSSERE8.png" /></td><td>TEYSSERE</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_ZABRUN9.png" /></td><td>ZA BRUN</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_ZACHAMPROMAN10.png" /></td><td>ZA CHAMP ROMAN</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_ZACROIXROUGE11.png" /></td><td>ZA CROIX ROUGE</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_ZADESGLAIRONS12.png" /></td><td>ZA DES GLAIRONS</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_ZADUBOURGAMON13.png" /></td><td>ZA DU BOURGAMON</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_ZAPORTEDUGRESIVAUDAN14.png" /></td><td>ZA PORTE DU GRESIVAUDAN</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_ZAPRERUFFIER15.png" /></td><td>ZA PRE RUFFIER</td></tr><tr><td style="text-align: center;"><img src="legend/LIMITESQUARTIERS2020_1_ZASUD16.png" /></td><td>ZA SUD</td></tr></table>': layer_LIMITESQUARTIERS2020_1,'<img src="legend/PERIMETREVILLE_0.png" /> PERIMETRE VILLE': layer_PERIMETREVILLE_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_LIMITESQUARTIERS2020_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['NOM'] !== null?String('<div style="color: #c511c5; font-size: 9pt; font-family: \'Arial Black\', sans-serif;">' + layer.feature.properties['NOM']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_LIMITESQUARTIERS2020_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_PARCELLES_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['clefSig'] !== null?String('<div style="color: #000000; font-size: 5pt; font-family: \'Arial Black\', sans-serif;">' + layer.feature.properties['clefSig']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_PARCELLES_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_LIMITESQUARTIERS2020_1,layer_PARCELLES_2]);
+        map.on("zoomend", function(){
+            resetLabels([layer_LIMITESQUARTIERS2020_1,layer_PARCELLES_2]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_LIMITESQUARTIERS2020_1,layer_PARCELLES_2]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_LIMITESQUARTIERS2020_1,layer_PARCELLES_2]);
+        });
+        </script>
+    </body>
+</html>
